@@ -23,15 +23,5 @@
   },
   "permissions": [
     "activeTab"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*/*"
-      ],
-      "js": [
-        "content.js"
-      ]
-    }
   ]
 }

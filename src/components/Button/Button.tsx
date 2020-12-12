@@ -5,10 +5,14 @@ import "./Button.css";
 export const Button = () => {
   const [isCopied, setCopied] = React.useState(false);
 
+  React.useEffect(()=> {
+		chrome.runtime.sendMessage({ type: "INJ_CONTENT" });
+	}, []);
+
   const onClick = () => {
     // setCopied(!isCopied);
     const randonmWord = randomWords( { exactly: 4, maxLength: 5, join: '-' });
-    chrome.runtime.sendMessage(randonmWord);
+    chrome.runtime.sendMessage({ type: "COPY_PASS_PHRASE", phrase: randonmWord });
   };
 
   return (
