@@ -21,6 +21,9 @@
     ],
     "persistent": false
   },
+  "permissions": [
+    "activeTab"
+  ],
   "content_scripts": [
     {
       "matches": [

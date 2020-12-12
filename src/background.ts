@@ -5,7 +5,9 @@ chrome.runtime.onMessage.addListener((request) => {
     copyToClipboard(request);
 
     //transfers the message to the active tabs
-    chrome.tabs.query({}, (tabs) => {
+
+    
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         tabs.forEach((tab) => {
           if (tab.id) {
             chrome.tabs.sendMessage(tab.id, request);
