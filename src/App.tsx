@@ -10,7 +10,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <div>
-          Add Numbers : <ToggleSwitch Name="addNumbers" checked={addNumber} onChanged={setAddNumber}/>
+          Add Number : <ToggleSwitch Name="addNumbers" checked={addNumber} onChanged={setAddNumber}/>
         </div>
         
         <Button addNumbers={addNumber}/>
