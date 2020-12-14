@@ -2,7 +2,12 @@ import * as React from "react";
 import randomWords from "random-words";
 import "./Button.css";
 
-export const Button = () => {
+type ButtonProps = {
+  addNumbers: boolean
+}
+
+
+export const Button = (props:ButtonProps) => {
   const [isCopied, setCopied] = React.useState(false);
 
   React.useEffect(()=> {
@@ -11,13 +16,23 @@ export const Button = () => {
 
   const onClick = () => {
     // setCopied(!isCopied);
-    const randonmWord = randomWords( { exactly: 4, maxLength: 5, join: '-' });
+    var randonmWord = randomWords( { exactly: 4, maxLength: 5, join: '-' });
+    
+
+    if(props.addNumbers){
+      const minm = 1000, 
+            maxm = 9999; 
+      
+      const num = Math.floor(Math.random() * (maxm - minm + 1)) + minm; 
+      randonmWord += `-${num}`;
+    }
+  
     chrome.runtime.sendMessage({ type: "COPY_PASS_PHRASE", phrase: randonmWord });
   };
 
   return (
     <div className="buttonContainer">
-      <button className="snowButton" onClick={onClick}>
+      <button className="phraseButton" onClick={onClick}>
         {isCopied ? "The Passphrase has been copied" : "Copy the Passphrase" }
       </button>
     </div>
